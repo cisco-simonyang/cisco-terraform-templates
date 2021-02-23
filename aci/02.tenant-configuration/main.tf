@@ -125,7 +125,7 @@ resource "aci_application_epg" "terraform_epg" {
     for_each                = var.epgs
     application_profile_dn  = aci_application_profile.terraform_ap.id
     name                    = each.value.epg
-    relation_fv_rs_bd       = aci_bridge_domain.terraform_bd["prod_bd"].id
+    relation_fv_rs_bd       = aci_bridge_domain.terraform_bd[each.value.bd].id
     description             = "EPG Created Using Terraform"
 }
 

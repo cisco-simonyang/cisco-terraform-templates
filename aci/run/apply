@@ -1,0 +1,11 @@
+
+if [ $# -eq 0 ]
+then
+    echo "No arguments supplied"
+elif [ -f "$(pwd)/$1.tfvars.json" ]; then
+    terraform apply -var-file=$(pwd)/$1.tfvars.json -state=$1.tfstate
+elif [ -f "$(pwd)/$1.tfvars" ]; then
+    terraform apply -var-file=$(pwd)/$1.tfvars -state=$1.tfstate
+else
+    echo "No variable files supplied"
+fi

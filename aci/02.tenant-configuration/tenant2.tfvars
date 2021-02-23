@@ -1,8 +1,3 @@
-apic = {
-    username = "admin"
-    password = ""
-    url      = ""
-  }
 
 tenant = {
         name = "terraform_tenant_2"
@@ -78,7 +73,7 @@ filters = {
       entry    = "https"
       protocol = "tcp"
       port     = "443"
-    },
+    }
     filter_sql = {
       filter   = "sql"
       entry    = "sql"

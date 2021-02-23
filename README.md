@@ -14,6 +14,7 @@ git clone https://github.com/cisco-simonyang/cisco-terraform-templates.git
 1. set the environment variable for APIC credential
 ```
 $ export TF_VAR_apic='{username="admin", password="admin", url="https://<apic_ip>"}'
+$ export TF_VAR_vcenter='{username="admin", password="admin", url="<vcenter_ip>"}'
 ```
 
 1. change the directory to a certain sample starting with numbering.
