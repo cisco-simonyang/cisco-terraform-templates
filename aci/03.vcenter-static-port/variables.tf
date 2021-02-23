@@ -16,7 +16,7 @@ variable "datacenter_name" {
 variable "host_virtual_switches" {
     type = map
     default = {
-        test_vswith = {
+        terraform_vswith = {
             hosts = ["10.72.86.35", "10.72.86.36", "10.72.86.37", "10.72.86.38"]
             mtu = 1500
             network_adapters = ["vmnic5"]
@@ -24,21 +24,21 @@ variable "host_virtual_switches" {
             standby_nics   = []
 
             port_groups = [{
-                name = "test_port_group_1200"
+                name = "pg_1200"
                 vlan_id           = 1200
                 allow_promiscuous = true
             }]
 
             # teaming_policy = "failover_explicit"
 
-            allow_promiscuous      = false
-            allow_forged_transmits = false
-            allow_mac_changes      = false
+            # allow_promiscuous      = false
+            # allow_forged_transmits = false
+            # allow_mac_changes      = false
 
-            shaping_enabled           = true
-            shaping_average_bandwidth = 50000000
-            shaping_peak_bandwidth    = 100000000
-            shaping_burst_size        = 1000000000
+            # shaping_enabled           = true
+            # shaping_average_bandwidth = 50000000
+            # shaping_peak_bandwidth    = 100000000
+            # shaping_burst_size        = 1000000000
             
         }
     }

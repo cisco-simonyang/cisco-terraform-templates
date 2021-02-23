@@ -20,7 +20,7 @@ data "vsphere_host" "hosts" {
     for_each = {
         for switch in local.host_virtual_switches : switch.host => switch
     }
-    name = each.value.host
+    name = each.key
     datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
@@ -73,21 +73,21 @@ resource "vsphere_host_virtual_switch" "switch" {
     }
     name           = each.value.name
     host_system_id = data.vsphere_host.hosts[each.value.host].id
-    network_adapters = ["vmnic4"]
-    active_nics  = ["vmnic4"]
+    network_adapters = each.value.network_adapters
+    active_nics  = each.value.active_nics
     standby_nics = []
     mtu = each.value.mtu
 }
 
 
-resource "vsphere_host_port_group" "port_groups" {
-    for_each = {
-        for pg in local.host_port_groups : "${pg.host}_${pg.vswitch}_${pg.name}" => pg
-    }
-    name           = each.value.name
-    host_system_id = data.vsphere_host.hosts[each.value.host].id
-    virtual_switch_name = each.value.vswitch
-    vlan_id = each.value.vlan_id
-    allow_promiscuous = each.value.allow_promiscuous
-}
+# resource "vsphere_host_port_group" "port_groups" {
+#     for_each = {
+#         for pg in local.host_port_groups : "${pg.host}_${pg.vswitch}_${pg.name}" => pg
+#     }
+#     name           = each.value.name
+#     host_system_id = data.vsphere_host.hosts[each.value.host].id
+#     virtual_switch_name = each.value.vswitch
+#     vlan_id = each.value.vlan_id
+#     allow_promiscuous = each.value.allow_promiscuous
+# }
 
